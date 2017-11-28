@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ajax</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%=link_to "HOME", root_path %>
+
+<% if user_signed_in?  %>
+  <%=link_to "LOG-OUT", destroy_user_session_path, method: "delete", data: {confirm: "are you sure to log out?"} %>
+<% else %>
+  <%=link_to "LOG-IN",  new_user_session_path %>
+<% end %>
+
+<div class="container">
+
+  <%= yield %>
+
+</div>
+</body>
+</html>

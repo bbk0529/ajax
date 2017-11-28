@@ -1,0 +1,12 @@
+// alert('좋냐? 쿠아아아아아!!! ');
+
+// $('#like_count').text(<%= @post.likes.count %>);
+$('#like_count').text(<%= @post.likes.count %>);
+
+if (<%=@result%>) {
+  $('#like_button').text("Like").addClass("btn-info").removeClass("btn-danger");
+
+}
+else {
+  $('#like_button').text("DisLike").removeClass("btn-info").addclass("btn-danger");
+}

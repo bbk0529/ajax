@@ -1,0 +1,2 @@
+alert('새로운 글이 잘 등록되었슴다');
+$('#comment_table').prepend('<tr id="tr_<%=@c.id%>"><td><%=@c.body%></td><td><%=button_tag :DEL, id:@c.id, class:"delete_button"%></td></tr>');

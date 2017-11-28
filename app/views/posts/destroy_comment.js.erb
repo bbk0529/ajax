@@ -1,0 +1,5 @@
+alert('글이 잘 지워졌어요');
+console.log(<%= params[:comment_id] %>);
+var trs=$('#tr_<%=params[:comment_id] %>')
+console.log(trs);
+trs.hide();
