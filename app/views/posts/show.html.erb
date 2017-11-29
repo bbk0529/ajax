@@ -32,6 +32,8 @@
   <thead>
     <tr>
       <th> 댓글 </th>
+      <th width="10%"> 삭제 </th>
+      <th width="10%"> 삭제2 </th>
     </tr>
   </thead>
   <tbody>
@@ -39,6 +41,7 @@
       <tr id="tr_<%=comment.id%>">
         <td> <%=comment.body %> </td>
         <td> <%=button_tag :DEL, id:comment.id, class:"delete_button"%> </td>
+        <td> <%=link_to "삭제", destroy_comment_posts_path(comment.id), method: "delete", data: {confirm: "Are you sure?"}, class: "btn btn-warning", remote: "true" %> </td>
       </tr>
       <% end %>
   </tbody>
@@ -51,9 +54,7 @@ $(()=>{
     table.on('submit', (e) => {
       e.preventDefault();
       var text=table.serialize();
-      // var text2=$("#comment_body").val();
       console.log(text);
-      // console.log(text2);
       $.ajax({
         url: "<%=create_comment_to_post_path%>",
         method: "post",
@@ -70,12 +71,12 @@ $(()=>{
       });
     })
 
-///posts/:comment_id/destroy_comment(.:format)
-
     $(document).on('click', '.delete_button', function(e) {
       console.dir($(this));
       var id=$(this).attr("id");
       var name=$(this).attr("name");
+      console.log(id)
+      console.log(name)
 
       $.ajax({
         url: "/posts/" + id + "/destroy_comment",

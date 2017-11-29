@@ -1,2 +1,5 @@
 alert('새로운 글이 잘 등록되었슴다');
-$('#comment_table').prepend('<tr id="tr_<%=@c.id%>"><td><%=@c.body%></td><td><%=button_tag :DEL, id:@c.id, class:"delete_button"%></td></tr>');
+$('#comment_table').prepend(
+  '<tr id="tr_<%=@c.id%>"><td><%=@c.body%></td><td><%=button_tag :DEL, id:@c.id, class:"delete_button"%></td>'+
+  '<td> <%=link_to "삭제", destroy_comment_posts_path(@c.id), method: "delete", data: {confirm: "Are you sure?"}, class: "btn btn-warning", remote: "true" %> </td></tr>'
+);

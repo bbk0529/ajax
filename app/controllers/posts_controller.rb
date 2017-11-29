@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :create_comment, :like_post ]
-  before_action :is_login?, onl: [:create_comment, :like_post, :destroy_comment]
+  before_action :is_login?, only: [:create_comment, :like_post, :destroy_comment]
 
   # GET /posts
   # GET /posts.json
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
 
   def destroy_comment
     p params[:comment_id]
-    Comment.find(params[:comment_id]).destroy
+    @c = Comment.find(params[:comment_id]).destroy
   end
 
 
