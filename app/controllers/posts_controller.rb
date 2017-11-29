@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.order("created_at DESC").page(params[:page])
   end
 
   # GET /posts/1
@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   def show
     @like=true
     if user_signed_in?
-      @like = current_user.likes.find_by(post_id: @post.id).nil?\
+      @like = current_user.likes.find_by(post_id: @post.id).nil?
     end
   end
 
@@ -27,11 +27,6 @@ class PostsController < ApplicationController
   end
 
   def create_comment
-    unless user_signed_in?
-      respond_to do |format|
-        format.js  { render 'please_login.js.erb' }
-      end
-    end
     p "haha"
     @c=@post.comments.create(comment_params)
   end
@@ -60,6 +55,9 @@ class PostsController < ApplicationController
     @result = @result.frozen?
   end
 
+  def page_scroll
+    @posts = Post.order("created_at DESC").page(params[:page])
+  end
 
   # POST /posts
   # POST /posts.json
@@ -100,6 +98,11 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
+
+
 
   private
     def is_login?

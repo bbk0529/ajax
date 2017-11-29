@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
     collection do
       delete '/:comment_id/destroy_comment' => 'posts#destroy_comment', as: 'destroy_comment'
+      get '/page_scroll' => 'posts#page_scroll', as: 'scroll'
     end
   end
 

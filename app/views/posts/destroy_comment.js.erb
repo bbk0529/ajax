@@ -1,6 +1,6 @@
 alert('글이 잘 지워졌어요');
 console.log(<%= params[:comment_id] %>);
 //var trs=$('#tr_<%=params[:comment_id] %>')
-trs= $('#tr_<%=@c.id %>').fadeOut()
+trs= $('#tr_<%=@c.id %>').fadeOut().remove();
 console.log(trs);
 //trs.fadeOut()

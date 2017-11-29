@@ -1,0 +1,30 @@
+<script>
+$(()=>{
+    var table = $('#comment')
+    table.on('submit', (e) => {
+      e.preventDefault();
+      var text=table.serialize();
+      $.ajax({
+        url: "<%=create_comment_to_post_path%>",
+        method: "post",
+        data: text
+      });
+    })
+
+    $('#like_button').on('click', (e)=> {
+      e.preventDefault();
+      $.ajax({
+        method: "POST",
+        url: "<%= like_to_post_path %>"
+      });
+    })
+
+    $(document).on('click', '.delete_button', function(e) {
+      var id=$(this).attr("id");
+      $.ajax({
+        url: "/posts/" + id + "/destroy_comment",
+        method: "delete"
+      });
+    })
+})
+</script>

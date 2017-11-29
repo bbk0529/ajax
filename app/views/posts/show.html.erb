@@ -46,42 +46,4 @@
       <% end %>
   </tbody>
 </table>
-
-
-<script>
-$(()=>{
-    var table = $('#comment')
-    table.on('submit', (e) => {
-      e.preventDefault();
-      var text=table.serialize();
-      console.log(text);
-      $.ajax({
-        url: "<%=create_comment_to_post_path%>",
-        method: "post",
-        data: text
-      });
-    })
-
-    $('#like_button').on('click', (e)=> {
-      e.preventDefault();
-      console.log("like!!");
-      $.ajax({
-        method: "POST",
-        url: "<%= like_to_post_path %>"
-      });
-    })
-
-    $(document).on('click', '.delete_button', function(e) {
-      console.dir($(this));
-      var id=$(this).attr("id");
-      var name=$(this).attr("name");
-      console.log(id)
-      console.log(name)
-
-      $.ajax({
-        url: "/posts/" + id + "/destroy_comment",
-        method: "delete"
-      });
-    })
-})
-</script>
+<%=render 'show_script'%>
